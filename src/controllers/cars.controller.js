@@ -15,7 +15,7 @@ const {
 
 const getCarsController = async (req, res) => {
   try {
-    const result = getAllCarsService();
+    const result = await getAllCarsService();
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -67,7 +67,18 @@ const getCustomersController = async (req, res) => {
   }
 };
 
+const getCustomerByIdController = async (req, res) => {
+  try {
+    const result = await getCustomerByIdService(req.params.id);
+    res.status(200).json(result.rows[0]);
+  }
+  catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 const createCustomersController = async (req, res) => {
+  console.log("🚀 ~ file: cars.controller.js:81 ~ createCustomersController ~ req:", req.body);
   try {
     const result = await createCustomersService(req.body);
     res.status(201).json(result);
@@ -76,33 +87,131 @@ const createCustomersController = async (req, res) => {
   }
 };
 
-const updateCustomersController = async (req, res) => {};
+const updateCustomersController = async (req, res) => {
+  try {
+    const result = await updateCustomersService(req.params.id, req.body);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const deleteCustomersController = async (req, res) => {};
+const deleteCustomersController = async (req, res) => {
+  try {
+    const result = await deleteCustomersService(req.params.id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const getSalespersonController = async (req, res) => {};
+const getSalespersonController = async (req, res) => {
+  try {
+    const result = await getAllSalespersonService();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const getSalespersonByIdController = async (req, res) => {};
+const getSalespersonByIdController = async (req, res) => {
+  try {
+    const result = await getSalespersonByIdService(req.params.id);
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const createSalespersonController = async (req, res) => {};
+const createSalespersonController = async (req, res) => {
+  try {
+    const result = await createSalespersonService(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const deleteSalespersonController = async (req, res) => {};
+const deleteSalespersonController = async (req, res) => {
+  try {
+    const result = await deleteSalespersonService(req.params.id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const updateSalespersonController = async (req, res) => {};
+const updateSalespersonController = async (req, res) => {
+  try {
+    const result = await updateSalespersonService(req.params.id, req.body);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const getAllUsersController = (req, res) => {};
+const getAllUsersController = async (req, res) => {
+  try {
+    const result = await getAllUsersService();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const getUserByIdController = async (req, res) => {};
+const getUserByIdController = async (req, res) => {
+  try {
+    const result = await getUserByIdService(req.params.id);
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const createUserController = async (req, res) => {};
+const createUserController = async (req, res) => {
+  try {
+    const result = await createUserService(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const updateUserController = async (req, res) => {};
+const updateUserController = async (req, res) => {
+  try {
+    const result = await updateUserService(req.params.id, req.body);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const deleteUserController = async (req, res) => {};
+const deleteUserController = async (req, res) => {
+  try {
+    const result = await deleteUserService(req.params.id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const createSalesInvoiceController = async (req, res) => {};
+const createSalesInvoiceController = async (req, res) => {
+  try {
+    const result = await createSalesInvoiceService(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-const getSalesInvoiceController = async (req, res) => {};
+const getSalesInvoiceController = async (req, res) => {
+  try {
+    const result = await getSalesInvoiceService();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 module.exports = {
   createCarController,
@@ -112,11 +221,13 @@ module.exports = {
   deleteCarController,
   getCustomersController,
   createCustomersController,
+  getCustomerByIdController,
   updateCustomersController,
   deleteCustomersController,
   getSalespersonController,
   getSalespersonByIdController,
   createSalespersonController,
+  updateSalespersonController,
   deleteSalespersonController,
   getAllUsersController,
   getUserByIdController,

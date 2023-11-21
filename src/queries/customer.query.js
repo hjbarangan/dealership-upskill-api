@@ -16,6 +16,7 @@ const getCustomerByIdQuery = async (id) => {
       "SELECT * FROM customers WHERE customer_id = $1",
       [id]
     );
+    console.log("🚀 ~ file: customer.query.js:19 ~ getCustomerByIdQuery ~ result:", result);
     return result;
   } catch (error) {
     console.log(error);

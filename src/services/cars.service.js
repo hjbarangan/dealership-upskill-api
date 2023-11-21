@@ -9,7 +9,7 @@ const {
 async function getAllCarsService() {
   try {
     const result = await getAllCarsQuery();
-    return result;
+    return result.rows;
   } catch (error) {
     console.log(error);
     throw error;
