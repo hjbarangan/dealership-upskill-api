@@ -13,7 +13,7 @@ const getAllSalespersonQuery = async () => {
 const getSalespersonByIdQuery = async (id) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM salesperson WHERE salesperson_id = $1",
+      "SELECT * FROM salespersons WHERE salesperson_id = $1",
       [id]
     );
     return result;

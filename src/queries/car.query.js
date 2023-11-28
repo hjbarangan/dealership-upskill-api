@@ -10,9 +10,9 @@ const getAllCarsQuery = async () => {
   }
 };
 
-const getCarByIdQuery = async (id) => {
+const getCarByIdQuery = async (car_id) => {
   try {
-    const result = await pool.query("SELECT * FROM cars WHERE car_id = $1", [id]);
+    const result = await pool.query("SELECT * FROM cars WHERE car_id = $1", [car_id]);
     return result;
   } catch (error) {
     console.log(error);

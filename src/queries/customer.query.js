@@ -32,7 +32,7 @@ const createCustomerQuery = async (customer) => {
       customer_address,
       contact_no,
     } = customer;
-    const result = await pool.query("CALL add_customers($1, $2, $3, $4)", [
+    const result = await pool.query("CALL add_customer($1, $2, $3, $4)", [
       customer_firstname,
       customer_lastname,
       customer_address,
@@ -54,7 +54,7 @@ const updateCustomerQuery = async (id, car) => {
       contact_no,
     } = car;
     const result = await pool.query(
-      "CALL update_customers($1, $2, $3, $4, $5)",
+      "CALL update_customer($1, $2, $3, $4, $5)",
       [id, customer_firstname, customer_lastname, customer_address, contact_no]
     );
     return result;

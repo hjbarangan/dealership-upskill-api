@@ -1,5 +1,6 @@
 const {
   getAllCustomersService,
+  getCustomerByIdService,
   createCustomersService,
   updateCustomersService,
   deleteCustomersService,
@@ -17,7 +18,7 @@ const getCustomersController = async (req, res) => {
 const getCustomerByIdController = async (req, res) => {
   try {
     const result = await getCustomerByIdService(req.params.id);
-    res.status(200).json(result.rows[0]);
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
