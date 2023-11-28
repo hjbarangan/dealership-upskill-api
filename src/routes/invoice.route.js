@@ -1,5 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-// router.get("/salesinvoice", getSalesInvoiceController);
-// router.post("/salesinvoice", createSalesInvoiceController);
+const {
+  getSalesInvoiceController,
+  getSalesInvoiceByIdController,
+  createSalesInvoiceController,
+  updateSalesInvoiceController,
+} = require("../controllers/invoice.controller");
+
+router.get("/", getSalesInvoiceController);
+router.post("/", createSalesInvoiceController);
+router.get("/:id", getSalesInvoiceByIdController);
+router.put("/:id", updateSalesInvoiceController);
+
+module.exports = router;

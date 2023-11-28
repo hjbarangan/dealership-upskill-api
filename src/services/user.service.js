@@ -1,4 +1,4 @@
-const {getUsersController, getUserByIdController, createUserController, updateUserController, deleteUserController,} = require("../controllers/users.controller");
+const { getAllUsersQuery, getUserByIdQuery, createUserQuery, updateUserQuery, deleteUserQuery } = require('../queries/user.query');
 
 async function getAllUsersService() {
   try {

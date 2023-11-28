@@ -7,10 +7,12 @@ const {
   createCustomersController,
   updateCustomersController,
   deleteCustomersController,
-} = require("../controllers/cars.controller");
+} = require("../controllers/customer.controller");
 
-router.get("/customers", getCustomersController);
-router.get("/customers/:id", getCustomerByIdController);
-router.post("/customers", createCustomersController);
-router.put("/customers/:id", updateCustomersController);
-router.delete("/customers/:id", deleteCustomersController);
+router.get("/", getCustomersController);
+router.get("/:id", getCustomerByIdController);
+router.post("/", createCustomersController);
+router.put("/:id", updateCustomersController);
+router.delete("/:id", deleteCustomersController);
+
+module.exports = router

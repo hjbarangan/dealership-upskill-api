@@ -9,10 +9,10 @@ const {
   deleteCarController,
 } = require("../controllers/cars.controller");
 
-router.get("/cars", getCarsController);
-router.get("/cars/:id", getCarByIdController);
-router.post("/cars", createCarController);
-router.put("/cars/:id", updateCarController);
-router.delete("/cars/:id", deleteCarController);
+router.get("/", getCarsController);
+router.get("/:id", getCarByIdController);
+router.post("/", createCarController);
+router.put("/:id", updateCarController);
+router.delete("/:id", deleteCarController);
 
 module.exports = router
