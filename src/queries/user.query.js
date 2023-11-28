@@ -2,7 +2,7 @@ const pool = require("../config");
 
 const getAllUsersQuery = async () => {
   try {
-    const result = await pool.query("SELECT * FROM v_all_users");
+    const result = await pool.query("SELECT * FROM v_all_user");
     return result;
   } catch (error) {
     console.log(error);
@@ -24,21 +24,12 @@ const getUserByIdQuery = async (id) => {
 
 const createUserQuery = async (user) => {
   try {
-    const {
-      user_name,
-      user_phone,
-      user_email,
-      user_address,
-      user_password,
-      user_role,
-    } = user;
-    const result = await pool.query("CALL add_user($1, $2, $3, $4, $5, $6)", [
-      user_name,
-      user_phone,
-      user_email,
-      user_address,
-      user_password,
-      user_role,
+    const { user_firstname, user_lastname, email, password } = user;
+    const result = await pool.query("CALL add_user($1, $2, $3, $4)", [
+      user_firstname,
+      user_lastname,
+      email,
+      password,
     ]);
     return result;
   } catch (error) {
@@ -49,25 +40,10 @@ const createUserQuery = async (user) => {
 
 const updateUserQuery = async (id, user) => {
   try {
-    const {
-      user_name,
-      user_phone,
-      user_email,
-      user_address,
-      user_password,
-      user_role,
-    } = user;
+    const { user_firstname, user_lastname, email, password } = user;
     const result = await pool.query(
-      "CALL update_user($1, $2, $3, $4, $5, $6, $7)",
-      [
-        id,
-        user_name,
-        user_phone,
-        user_email,
-        user_address,
-        user_password,
-        user_role,
-      ]
+      "CALL update_user($1, $2, $3, $4, $5)",
+      [id, user_firstname, user_lastname, email, password]
     );
     return result;
   } catch (error) {

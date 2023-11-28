@@ -25,17 +25,12 @@ const getSalespersonByIdQuery = async (id) => {
 
 const createSalespersonQuery = async (salesperson) => {
   try {
-    const {
-      salesperson_name,
-      salesperson_phone,
-      salesperson_email,
-      salesperson_address,
-    } = salesperson;
-    const result = await pool.query("CALL add_salesperson($1, $2, $3, $4)", [
-      salesperson_name,
-      salesperson_phone,
-      salesperson_email,
-      salesperson_address,
+    const { salesperson_firstname, salesperson_lastname, contact_no } =
+      salesperson;
+    const result = await pool.query("CALL add_salesperson($1, $2, $3)", [
+      salesperson_firstname,
+      salesperson_lastname,
+      contact_no,
     ]);
     return result;
   } catch (error) {
@@ -46,21 +41,11 @@ const createSalespersonQuery = async (salesperson) => {
 
 const updateSalespersonQuery = async (id, salesperson) => {
   try {
-    const {
-      salesperson_name,
-      salesperson_phone,
-      salesperson_email,
-      salesperson_address,
-    } = salesperson;
+    const { salesperson_firstname, salesperson_lastname, contact_no } =
+      salesperson;
     const result = await pool.query(
-      "CALL update_salesperson($1, $2, $3, $4, $5)",
-      [
-        id,
-        salesperson_name,
-        salesperson_phone,
-        salesperson_email,
-        salesperson_address,
-      ]
+      "CALL update_salesperson($1, $2, $3, $4)",
+      [id, salesperson_firstname, salesperson_lastname, contact_no]
     );
     return result;
   } catch (error) {
