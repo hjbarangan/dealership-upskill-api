@@ -2,7 +2,7 @@ const pool = require("../config");
 
 const getAllInvoiceQuery = async () => {
   try {
-    const result = await pool.query("SELECT * FROM v_all_sales_invoice");
+    const result = await pool.query("SELECT * FROM v_sales_invoice_details");
     return result;
   } catch (error) {
     console.log(error);
