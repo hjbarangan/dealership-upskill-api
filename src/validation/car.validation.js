@@ -25,6 +25,14 @@ const validateCar = async (car) => {
   if (!color) {
     throw new Error("Missing required field: color");
   }
+
+  if (!car_price) {
+    throw new Error("Missing required field: color");
+  }
+
+  if (!brand_new) {
+    throw new Error("Missing required field: color");
+  }
 };
 
 module.exports = validateCar;

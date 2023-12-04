@@ -25,7 +25,7 @@ const getCarByIdQuery = async (car_id) => {
 
 const createCarQuery = async (car) => {
   try {
-    const { brand, model, year, serial_no, color, car_price, brand_new } = car;
+    const { brand, model, year, serial_no, color, car_price, brand_new, availabilty, arrive_date } = car;
 
     await validateCar(car);
     const checkSerialNo = await pool.query(
@@ -38,8 +38,8 @@ const createCarQuery = async (car) => {
     }
 
     const result = await pool.query(
-      "CALL add_cars($1, $2, $3, $4, $5, $6, $7)",
-      [brand, model, year, serial_no, color, car_price, brand_new]
+      "CALL add_cars($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+      [brand, model, year, serial_no, color, car_price, brand_new, availabilty, arrive_date],
     );
 
     return result;
@@ -51,7 +51,7 @@ const createCarQuery = async (car) => {
 
 const updateCarQuery = async (id, car) => {
   try {
-    const { brand, model, year, serial_no, color, car_price, brand_new } = car;
+    const { brand, model, year, serial_no, color, car_price, brand_new,  availabilty, arrive_date } = car;
 
     const checkExistingCar = await pool.query(
       "SELECT * FROM cars WHERE car_id = $1",
@@ -61,8 +61,8 @@ const updateCarQuery = async (id, car) => {
       throw new Error("Car does not exist");
     }
     const result = await pool.query(
-      "CALL update_cars($1, $2, $3, $4, $5, $6, $7, $8)",
-      [id, brand, model, year, serial_no, color, car_price, brand_new]
+      "CALL update_cars($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+      [id, brand, model, year, serial_no, color, car_price, brand_new,  availabilty, arrive_date]
     );
     return result;
   } catch (error) {
