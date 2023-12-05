@@ -25,7 +25,7 @@ const getCarByIdQuery = async (car_id) => {
 
 const createCarQuery = async (car) => {
   try {
-    const { brand, model, year, serial_no, color, car_price, brand_new, availabilty, arrive_date } = car;
+    const { brand, model, year, serial_no, color, car_price, brand_new, availability, arrive_date } = car;
 
     await validateCar(car);
     const checkSerialNo = await pool.query(
@@ -39,7 +39,7 @@ const createCarQuery = async (car) => {
 
     const result = await pool.query(
       "CALL add_cars($1, $2, $3, $4, $5, $6, $7, $8, $9)",
-      [brand, model, year, serial_no, color, car_price, brand_new, availabilty, arrive_date],
+      [brand, model, year, serial_no, color, car_price, brand_new, availability, arrive_date],
     );
 
     return result;
