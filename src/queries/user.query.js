@@ -62,6 +62,8 @@ const deleteUserQuery = async (id) => {
   }
 };
 
+
+
 module.exports = {
   getAllUsersQuery,
   getUserByIdQuery,

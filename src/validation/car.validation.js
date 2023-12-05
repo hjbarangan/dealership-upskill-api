@@ -27,11 +27,11 @@ const validateCar = async (car) => {
   }
 
   if (!car_price) {
-    throw new Error("Missing required field: color");
+    throw new Error("Missing required field: car_price");
   }
 
   if (!brand_new) {
-    throw new Error("Missing required field: color");
+    throw new Error("Missing required field: brand_new");
   }
 };
 

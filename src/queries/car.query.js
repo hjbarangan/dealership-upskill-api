@@ -51,7 +51,7 @@ const createCarQuery = async (car) => {
 
 const updateCarQuery = async (id, car) => {
   try {
-    const { brand, model, year, serial_no, color, car_price, brand_new,  availabilty, arrive_date } = car;
+    const { brand, model, year, serial_no, color, car_price, brand_new,  availability, arrive_date } = car;
 
     const checkExistingCar = await pool.query(
       "SELECT * FROM cars WHERE car_id = $1",
@@ -62,7 +62,7 @@ const updateCarQuery = async (id, car) => {
     }
     const result = await pool.query(
       "CALL update_cars($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
-      [id, brand, model, year, serial_no, color, car_price, brand_new,  availabilty, arrive_date]
+      [id, brand, model, year, serial_no, color, car_price, brand_new,  availability, arrive_date]
     );
     return result;
   } catch (error) {
