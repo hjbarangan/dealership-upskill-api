@@ -14,7 +14,7 @@ const authRoutes = require("./auth.route");
 const authMiddleware = require("../middleware/auth.middleware");
 
 
-router.use("/cars", authMiddleware, carRoutes);
+router.use("/cars", carRoutes);
 router.use("/users", userRoutes);
 router.use("/customers", customerRoutes);
 router.use("/salespersons", salespersonRoutes);
