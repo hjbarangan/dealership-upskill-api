@@ -1,4 +1,13 @@
-const { getAllUsersQuery, getUserByIdQuery, createUserQuery, updateUserQuery, deleteUserQuery } = require('../queries/user.query');
+const {
+  getAllUsersQuery,
+  getUserByIdQuery,
+  createUserQuery,
+  updateUserQuery,
+  deleteUserQuery,
+  checkUserQuery,
+} = require("../queries/user.query");
+
+const generateToken = require("../utils/generate-token.util");
 
 async function getAllUsersService() {
   try {
@@ -21,14 +30,14 @@ async function getUserByIdService(id) {
 }
 
 async function createUserService(user) {
-    try {
-        const result = await createUserQuery(user);
-        return result;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-    }
+  try {
+    const result = await createUserQuery(user);
+    return result;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
 async function updateUserService(id, user) {
   try {
@@ -50,10 +59,34 @@ async function deleteUserService(id) {
   }
 }
 
+async function loginService(user) {
+  try {
+    let token;
+    const { email, password } = user;
+    const UserExists = await checkUserQuery(email);
+
+    if (!UserExists) {
+      throw new Error("User not found!");
+    } else {
+      token = generateToken(UserExists.user_id);
+    }
+
+    if (UserExists.password !== password) {
+      throw new Error("Password is incorrect!");
+    }
+
+    return { token: token, user: UserExists };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 module.exports = {
-    getAllUsersService,
-    createUserService,
-    getUserByIdService,
-    updateUserService,
-    deleteUserService,
-    };
+  loginService,
+  getAllUsersService,
+  createUserService,
+  getUserByIdService,
+  updateUserService,
+  deleteUserService,
+};

@@ -63,8 +63,21 @@ const deleteUserQuery = async (id) => {
 };
 
 
+const checkUserQuery = async (email) => {
+  try {
+    const result = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+    return result.rows[0];
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}  
+
 
 module.exports = {
+  checkUserQuery,
   getAllUsersQuery,
   getUserByIdQuery,
   createUserQuery,
